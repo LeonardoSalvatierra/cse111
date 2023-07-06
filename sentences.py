@@ -136,8 +136,9 @@ def make_sentence(quantity, tense):
     determiner = get_determiner(quantity)
     noun = get_noun(quantity)
     verb = get_verb(quantity, tense)
+    prep_phrase = get_prepositional_phrase(quantity)
 
-    sentence = f"{determiner.capitalize()} {noun} {verb}."
+    sentence = f"{determiner.capitalize()} {noun} {verb} {prep_phrase}."
     return sentence
 
 def get_preposition():
@@ -152,6 +153,10 @@ def get_preposition():
 
     Return: a randomly chosen preposition.
     """
+    prepositions = ["about", "above", "across", "after", "along","around", "at", "before", "behind", "below","beyond", "by", "despite", "except", "for","from", "in", "into", "near", "of","off", "on", "onto", "out", "over","past", "to", "under", "with", "without"]
+
+    preposition = random.choice(prepositions)
+    return preposition
 
 def get_prepositional_phrase(quantity):
     """Build and return a prepositional phrase composed
@@ -166,5 +171,11 @@ def get_prepositional_phrase(quantity):
             be single or pluaral.
     Return: a prepositional phrase.
     """
+    preposition = get_preposition()
+    determiner = get_determiner(quantity)
+    noun = get_noun(quantity)
+
+    prep_phrase = (f"{preposition} {determiner} {noun}")
+    return prep_phrase
 
 main()
